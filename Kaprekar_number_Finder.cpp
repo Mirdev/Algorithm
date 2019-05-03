@@ -7,11 +7,10 @@ bool iskn(int,int);
 
 int main(){
 	clock_t stt=clock();
-	unsigned int i;
+	unsigned int i, k;
 	int j=1;
 	for(i=1 ; i<4294967295 ; i++){
-		if(!(i%(int)pow(10.,j)))
-			j++;
+		for(j=0, k=i ; k>0 ; j++, k/=10);
 		if(j%2)
 			continue;
 		if(iskn(i,j)){
