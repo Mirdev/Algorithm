@@ -44,7 +44,7 @@ int main(){
 	bool f=false;
 	DWORD count=0;
 
-  //just input number is enough to continue.
+	//just input number is enough to continue.
 	cout << "Maximum touch number for full bright on a tile(1~2) : ";
 	while(1){
 		d = getch()-48;
@@ -53,9 +53,9 @@ int main(){
 			break;
 		}
 	}
-  //Input map shape. 0 is None tile, 1 or 2 is actual tile.
-  //If you input 2 in max touch number, then you can input 0, 1, 2. Or 1 is 0, 1.
-  //Enter is Ok. And if you want to end to make a map, press / key to continue.
+	//Input map shape. 0 is None tile, 1 or 2 is actual tile.
+	//If you input 2 in max touch number, then you can input 0, 1, 2. Or 1 is 0, 1.
+	//Enter is Ok. And if you want to end to make a map, press / key to continue.
 	cout << "map shape(end : / key) : " << endl;
 	for(i=0 ; ; i++){
 		map = (int **)realloc(map, sizeof(int)*(i+1));
