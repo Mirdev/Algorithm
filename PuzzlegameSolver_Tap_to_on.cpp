@@ -11,7 +11,7 @@
 //Χ/Δ is turned off/on cross line bulb, which turning on every tile that their cross line.
 //◎/● is turned off/on circular bulb, which turning on every tile that their nearby.
 //┼/╋ is turned off/on cross line bulb, which turning on every tile that their cross line(vertical and horizontal).
-//§ is turned off/on y shape bulb, which turning on y shape tile.
+//§ is turned only on bulb, which turning on just like normal bulb but the bulb does not turn off.
 
 #include <iostream>
 #include <conio.h>
