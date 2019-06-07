@@ -1,3 +1,22 @@
+//For windows visual studio
+
+//This 'Tap to on' game is simillar with Bright.
+//However, they had more functional tiles such as one tap to turn on every bulb in one line, cross, and so on.
+//□/■ is turned off/on bulb
+//─/━ is turned off/on vertical line bulb, which turning on just two near tile.
+//〓/↔ is turned off/on vertical line bulb, which turning on every tile that their line.
+//│/┃ is turned off/on horizontal line bulb, which turning on just two near tile.
+//∥/↕ is turned off/on horizontal line bulb, which turning on every tile that their line.
+//χ/ㅿ is turned off/on cross line bulb, which turning on just four near tile.
+//Χ/Δ is turned off/on cross line bulb, which turning on every tile that their cross line.
+//◎/● is turned off/on circular bulb, which turning on every tile that their nearby.
+//┼/╋ is turned off/on cross line bulb, which turning on every tile that their cross line(vertical and horizontal).
+//§ is turned only on bulb, which turning on just like normal bulb but the bulb does not turn off.
+//</← is turned off/on left only bulb, which turning on just left bulb.
+//,/↓ is turned off/on down only bulb, which turning on just down bulb.
+//>/→ is turned off/on right only bulb, which turning on just right bulb.
+//^/↑ is turned off/on up only bulb, which turning on just up bulb.
+
 #include <iostream>
 #include <conio.h>
 #include <Windows.h>
