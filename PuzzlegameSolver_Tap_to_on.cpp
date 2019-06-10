@@ -163,7 +163,7 @@ void print() {
 			case 61: cout << "Χ"; break; case 62: cout << "Δ"; break;
 			case 71: cout << "◎"; break; case 72: cout << "●"; break;
 			case 81: cout << "┼"; break; case 82: cout << "╋"; break;
-			case 132: cout << "§"; break;
+			case 92: cout << "§"; break;
 			}
 		cout << endl;
 	}
@@ -184,7 +184,7 @@ void tap(int a) {
 	case 61: case 62: x = 1; break;
 	case 71: case 72: o = 1; break;
 	case 81: case 82: t = 1; break;
-	case 132: y = 1; break;
+	case 92: y = 1; break;
 	}
 
 	map[Y][X] = set(Y, X);
@@ -290,7 +290,7 @@ int set(int Y, int X) {
 	case 61: case 62: x = 60; break;
 	case 71: case 72: o = 70; break;
 	case 81: case 82: t = 80; break;
-	case 132: y = 90; break;
+	case 92: y = 90; break;
 	}
 	if (y) return map[Y][X];
 	else return map[Y][X] % 2 + n + i + m + l + k + x + o + t + 1;
