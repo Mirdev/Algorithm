@@ -12,10 +12,6 @@
 //◎/● is turned off/on circular bulb, which turning on every tile that their nearby.
 //┼/╋ is turned off/on cross line bulb, which turning on every tile that their cross line(vertical and horizontal).
 //§ is turned only on bulb, which turning on just like normal bulb but the bulb does not turn off.
-//</← is turned off/on left only bulb, which turning on just left bulb.
-//,/↓ is turned off/on down only bulb, which turning on just down bulb.
-//>/→ is turned off/on right only bulb, which turning on just right bulb.
-//^/↑ is turned off/on up only bulb, which turning on just up bulb.
 
 #include <iostream>
 #include <conio.h>
@@ -43,7 +39,7 @@ int main() {
 	bool f = false;
 	DWORD count = 0;
 
-	cout << " □/■ = 1/2 \n ─/━ = n/N \t │/┃ = i/I \n χ/ㅿ = k/K \t ◎/● = o/O \n </← = a/A \t ,/↓ = s/S \t >/→ = f/F \t ^/↑ = w/W \n 〓/↔ = m/M \t ∥/↕ = l/L \t Χ/Δ = x/X \t ┼/╋ = t/T \n § = Y" << endl;
+	cout << " □/■ = 1/2 \n ─/━ = n/N \t │/┃ = i/I \n χ/ㅿ = k/K \t ◎/● = o/O \n 〓/↔ = m/M \t ∥/↕ = l/L \t Χ/Δ = x/X \t ┼/╋ = t/T \n § = Y" << endl;
 	cout << "map shape(end : / key) : " << endl;
 	for (i = 0; ; i++) {
 		map = (int**)realloc(map, sizeof(int) * (i + 1));
@@ -66,7 +62,7 @@ int main() {
 					i--;
 					j = x - 1;
 					system("cls");
-					cout << " □/■ = 1/2 \n ─/━ = n/N \t │/┃ = i/I \n χ/ㅿ = k/K \t ◎/● = o/O \n </← = a/A \t ,/↓ = s/S \t >/→ = f/F \t ^/↑ = w/W \n 〓/↔ = m/M \t ∥/↕ = l/L \t Χ/Δ = x/X \t ┼/╋ = t/T § = Y" << endl;
+					cout << " □/■ = 1/2 \n ─/━ = n/N \t │/┃ = i/I \n χ/ㅿ = k/K \t ◎/● = o/O \n 〓/↔ = m/M \t ∥/↕ = l/L \t Χ/Δ = x/X \t ┼/╋ = t/T § = Y" << endl;
 					cout << "map shape(end : / key) : " << endl;
 					for (int m = 0; m < i + 1; m++) {
 						for (int n = 0; n < j + 1; n++) cout << map[m][n];
@@ -85,11 +81,7 @@ int main() {
 			case 'X': d = 1; case 'x': d += 61; break;
 			case 'O': d = 1; case 'o': d += 71; break;
 			case 'T': d = 1; case 't': d += 81; break;
-			case 'A': d = 1; case 'a': d += 91; break;
-			case 'S': d = 1; case 's': d += 101; break;
-			case 'F': d = 1; case 'f': d += 111; break;
-			case 'W': d = 1; case 'w': d += 121; break;
-			case 'Y': d = 132; break;
+			case 'Y': d = 92; break;
 			default: j--; continue;
 			}
 			map[i][j] = d;
@@ -171,10 +163,6 @@ void print() {
 			case 61: cout << "Χ"; break; case 62: cout << "Δ"; break;
 			case 71: cout << "◎"; break; case 72: cout << "●"; break;
 			case 81: cout << "┼"; break; case 82: cout << "╋"; break;
-			case 91: cout << "<"; break; case 92: cout << "←"; break;
-			case 101: cout << ","; break; case 102: cout << "↓"; break;
-			case 111: cout << ">"; break; case 112: cout << "→"; break;
-			case 121: cout << "^"; break; case 122: cout << "↑"; break;
 			case 132: cout << "§"; break;
 			}
 		cout << endl;
@@ -183,7 +171,7 @@ void print() {
 }
 
 void tap(int a) {
-	bool d = 0, n = 0, i = 0, m = 0, l = 0, k = 0, x = 0, o = 0, t = 0, y = 0, q = 0, s = 0, f = 0, w = 0;
+	bool d = 0, n = 0, i = 0, m = 0, l = 0, k = 0, x = 0, o = 0, t = 0, y = 0;
 	int Y = ord[a].y, X = ord[a].x, corr = 0;
 
 	switch (map[Y][X]) {
@@ -196,17 +184,13 @@ void tap(int a) {
 	case 61: case 62: x = 1; break;
 	case 71: case 72: o = 1; break;
 	case 81: case 82: t = 1; break;
-	case 91: case 92: q = 1; break;
-	case 101: case 102: s = 1; break;
-	case 111: case 112: f = 1; break;
-	case 121: case 122: w = 1; break;
 	case 132: y = 1; break;
 	}
 
 	map[Y][X] = set(Y, X);
 	map[Y][X] - 1 ? sum-- : sum++;
 	if (Y > 0)
-		if (map[Y - 1][X] && (d || i || l || o || t || y || w))
+		if (map[Y - 1][X] && (d || i || l || o || t || y))
 			if (l || t)
 				for (int i = Y - 1; i > -1; i--) {
 					map[i][X] = set(i, X);
@@ -217,7 +201,7 @@ void tap(int a) {
 				map[Y - 1][X] - 1 ? sum-- : sum++;
 			}
 	if (X > 0)
-		if (map[Y][X - 1] && (d || n || m || o || t || y || q))
+		if (map[Y][X - 1] && (d || n || m || o || t || y))
 			if (m || t) for (int i = X - 1; i > -1; i--) {
 				map[Y][i] = set(Y, i);
 				map[Y][i] - 1 ? sum-- : sum++;
@@ -227,7 +211,7 @@ void tap(int a) {
 				map[Y][X - 1] - 1 ? sum-- : sum++;
 			}
 	if (Y < ::y - 1)
-		if (map[Y + 1][X] && (d || i || l || o || t || y || s))
+		if (map[Y + 1][X] && (d || i || l || o || t || y))
 			if (l || t) for (int i = Y + 1; i < ::y; i++) {
 				map[i][X] = set(i, X);
 				map[i][X] - 1 ? sum-- : sum++;
@@ -237,7 +221,7 @@ void tap(int a) {
 				map[Y + 1][X] - 1 ? sum-- : sum++;
 			}
 	if (X < ::x - 1)
-		if (map[Y][X + 1] && (d || n || m || o || t || y || f))
+		if (map[Y][X + 1] && (d || n || m || o || t || y))
 			if (m || t) for (int i = X + 1; i < ::x; i++) {
 				map[Y][i] = set(Y, i);
 				map[Y][i] - 1 ? sum-- : sum++;
@@ -295,7 +279,7 @@ void tap(int a) {
 }
 
 int set(int Y, int X) {
-	int d = 0, n = 0, i = 0, m = 0, l = 0, k = 0, x = 0, o = 0, t = 0, y = 0, a = 0, s = 0, f = 0, w = 0;
+	int d = 0, n = 0, i = 0, m = 0, l = 0, k = 0, x = 0, o = 0, t = 0, y = 0;
 	switch (map[Y][X]) {
 	case 1: case 2: d = 1; break;
 	case 11: case 12: n = 10; break;
@@ -306,12 +290,8 @@ int set(int Y, int X) {
 	case 61: case 62: x = 60; break;
 	case 71: case 72: o = 70; break;
 	case 81: case 82: t = 80; break;
-	case 91: case 92: a = 90; break;
-	case 101: case 102: s = 100; break;
-	case 111: case 112: f = 110; break;
-	case 121: case 122: w = 120; break;
-	case 132: y = 130; break;
+	case 132: y = 90; break;
 	}
 	if (y) return map[Y][X];
-	else return map[Y][X] % 2 + n + i + m + l + k + x + o + t + a + s + f + w + 1;
+	else return map[Y][X] % 2 + n + i + m + l + k + x + o + t + 1;
 }
