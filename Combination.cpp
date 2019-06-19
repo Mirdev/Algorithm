@@ -1,4 +1,4 @@
-# if input one number, then this program calculate all nCm
+// if input one number, then this program calculate all nCm
 
 #include <iostream>
 using namespace std;
