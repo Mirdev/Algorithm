@@ -1,0 +1,29 @@
+<script language=javascript>
+  var p = prompt("Please enter a number(integer and float)", "2")
+  var i, rm, lf=0, pnt, n, tn=1, s=1;
+
+  for(i=1 ; ; i++){
+    tn*=10;
+    if(p/tn<1){
+      pnt=i;
+      break;
+    }
+  }
+  document.write("√" + p + " = ");
+
+  for(n=1 ; n<30&&s ; n++){
+    for(i=1 ; i<11 ; i++){
+      if(i*i==p)
+        s=0;
+      if((lf+i)*i>p){
+        i-=1;
+        break;
+     }
+   }
+   p=(p-(lf+i)*i)*100;
+   lf=(lf+i+i)*10;
+   document.write(i);
+   if(n==pnt&&s)
+     document.write(".");
+  }
+</script>
