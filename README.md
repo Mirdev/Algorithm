@@ -1,1 +1,1 @@
-# C_Cpp_simple_projects
+# Algorithm
