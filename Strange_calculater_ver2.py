@@ -32,6 +32,8 @@ def calc(goal):
 
 route = calc(77)
 actual_value = '->'.join(simulator(route))
+route = calc(757)
+actual_value = '->'.join(simulator(route))
 
 print(len(route))
 print(route)
