@@ -6,7 +6,10 @@
 def simulator(route):
     route_lst = [1]
     for c in route:
-        v = (route_lst[-1] << 1, manipulate(route_lst[-1])[1]) [c == 'R']
+        if c == 'D':
+            v = route_lst[-1] * 2
+        else:
+            _, v = manipulate(route_lst[-1])
         route_lst.append(v)
     return list(map(str,route_lst))
 
@@ -15,7 +18,7 @@ def manipulate(n):
     if n > 9:
         str_n = str(n)
         rev = int(str_n[-1]+str_n[1:-1]+str_n[0])
-    return n << 1, rev
+    return n * 2, rev
 
 def calc(goal):
     route = {1:""}
@@ -32,9 +35,12 @@ def calc(goal):
 
 route = calc(77)
 actual_value = '->'.join(simulator(route))
+print(len(route))
+print(route)
+print(actual_value)
+
 route = calc(757)
 actual_value = '->'.join(simulator(route))
-
 print(len(route))
 print(route)
 print(actual_value)
