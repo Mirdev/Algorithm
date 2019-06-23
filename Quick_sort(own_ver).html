@@ -1,0 +1,37 @@
+<html>
+  <script language=javascript>
+    var left=0, right=0, tmp;
+    var ary = [6,7,3,0,9,2,4,1,8,5];
+
+    function quick(size, span){
+      if(size)
+        return 0;
+      left=0;
+      right=0;
+      for( ; left<size ; left++)
+      if(ary[span+left]>ary[span+size])
+        break;
+      for( ; right<size ; right++)
+      if(ary[span+right]<ary[span+size])
+        break;
+      if(left<right){
+        tmp=ary[span+left];
+        ary[span+left]=ary[span+right];
+        ary[span+right]=tmp;
+      }
+      else{
+        tmp=ary[span+left];
+        ary[span+left]=ary[span+size];
+        ary[span+size]=tmp;
+        if(left-1)
+          quick(left-1, 0);
+        if(size-left)
+          quick(size-left, left+1);
+      }
+      quick(size, span);
+    }
+    document.write(ary+"<br>");
+    quick(10, 0);
+    document.write(ary);
+  </script>
+</html>
