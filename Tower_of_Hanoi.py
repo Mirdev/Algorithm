@@ -1,4 +1,4 @@
-# There is three poles: a, b, c
+# There are three poles: a, b, c
 # The first parameter of hanoi, the function name, is the number of plates.
 
 def hanoi(n, F, A, T):
