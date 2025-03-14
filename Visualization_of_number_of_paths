@@ -1,4 +1,8 @@
+import matplotlib.pyplot as plt
+import math
+
 N = 3
+size = 6
 
 def route_re(n, r=0, u=0, path=""):
     return {path} if len(path) == n else (
@@ -31,10 +35,12 @@ for n in range(100):
         n -= 1
         break
         
+extra = math.ceil((n_of_paths-n*n)/n)
+        
 y_x_1 = list(map(list, zip(range(N), [x+1 for x in range(N)])))
 
 fig = plt.figure()
-fig, axes = plt.subplots(n, n+1, figsize=(4*(n+1), 4*n))
+fig, axes = plt.subplots(n, n+extra, figsize=(size*(n+extra), size*n))
 for ax in axes.flat:
     ax.plot(range(N), [x+1 for x in range(N)], linewidth=3, color='orange', zorder=5)
     ax.plot(range(N+1), range(N+1), linewidth=3, color='black', zorder=5)
