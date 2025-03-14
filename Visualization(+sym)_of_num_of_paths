@@ -1,4 +1,8 @@
-N = 5
+import matplotlib.pyplot as plt
+import math
+
+N = 3
+size = 6
 
 def route_re(n, r=0, u=0, path=""):
     return {path} if len(path) == n else (
@@ -31,10 +35,12 @@ for n in range(100):
         n -= 1
         break
         
+extra = math.ceil((n_of_paths-n*n)/n)
+        
 y_x_1 = list(map(list, zip(range(N), [x+1 for x in range(N)])))
 
 fig = plt.figure()
-fig, axes = plt.subplots(n, n+1, figsize=(4*(n+1), 4*n))
+fig, axes = plt.subplots(n, n+extra, figsize=(size*(n+extra), size*n))
 for ax in axes.flat:
     ax.plot(range(N), [x+1 for x in range(N)], linewidth=3, color='orange', zorder=5)
     ax.plot(range(N+1), range(N+1), linewidth=3, color='black', zorder=5)
@@ -56,7 +62,7 @@ for path, ax in zip(right, ax_iter):
 for path, ax in zip(wrong, ax_iter):
     coor = [0, 0]
     ax.set(xlim=[-1, N], ylim=[0, N], xticks=range(-1,N+1), yticks=range(N+1), zorder=0, aspect='equal')
-    first_cyan_point = None
+    first_counter = 0
     
     for p in path:
         pre_coor = coor.copy()
@@ -65,23 +71,15 @@ for path, ax in zip(wrong, ax_iter):
             
         ax.plot([pre_coor[0], coor[0]], [pre_coor[1], coor[1]], color='r', linewidth=4, clip_on=False, solid_capstyle="round", zorder=3)
 
-        if coor in y_x_1:
-            ax.scatter(coor[0], coor[1], c='cyan', s=100, marker='o', clip_on=False, zorder=6)
-            if first_cyan_point is None:
-                first_cyan_point = coor.copy()
-
-    if first_cyan_point:
-        coor = [0, 0]
-        for p in path:
-            pre_coor = coor.copy()
-            if p == 'R': coor[0] += 1
-            else: coor[1] += 1
+        if first_counter == 0:
             pre_alt_coor = [pre_coor[1]-1, pre_coor[0]+1]
             alt_coor = [coor[1]-1, coor[0]+1]
             ax.plot([pre_alt_coor[0], alt_coor[0]], [pre_alt_coor[1], alt_coor[1]], color='r', linewidth=4, clip_on=False, solid_capstyle="round", linestyle='dashed', zorder=3)
 
-            if coor == first_cyan_point:  # 대칭점을 만난 순간 멈춤
-                break
+        if coor in y_x_1:
+            ax.scatter(coor[0], coor[1], c='cyan', s=100, marker='o', clip_on=False, zorder=6)
+            if first_counter == 0:
+                first_counter = 1
                 
 for ax in ax_iter:
     ax.remove()
