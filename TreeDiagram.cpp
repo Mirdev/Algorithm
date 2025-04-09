@@ -89,3 +89,50 @@ void input(char x[]){
 			n++;
 		}
 }
+
+
+// Below is legacy reference: 
+// Non-recursive brute-force version that exhaustively generates permutations using nested loops.
+// Served as the conceptual basis for the recursive permutation logic above.
+/*
+#include<iostream>
+using namespace std;
+
+#define MAX 5
+
+int main(){
+	int i, j, k, l, m, n=0;
+	int str[MAX]={1,2,3,4,5};
+	int tmp[MAX]={0,};
+	for(i=0 ; i<5 ; i++){
+		tmp[i]=-1;
+		for(j=0 ; j<5 ; j++){
+			if(tmp[j]==-1)
+				continue;
+			tmp[j]=-1;
+			for(k=0 ; k<5 ; k++){
+				if(tmp[k]==-1)
+					continue;
+				tmp[k]=-1;
+				for(l=0 ; l<5 ; l++){
+					if(tmp[l]==-1)
+						continue;
+					tmp[l]=-1;
+					for(m=0 ; m<5 ; m++){
+						if(tmp[m]==-1)
+							continue;
+						cout << str[i] << str[j] << str[k] << str[l] << str[m] << endl;
+						n++;
+					}
+					tmp[l]=0;
+				}
+				tmp[k]=0;
+			}
+			tmp[j]=0;
+		}
+		tmp[i]=0;
+	}
+	cout << n << endl;
+	return 0;
+}
+*/
