@@ -12,7 +12,7 @@ vec = np.eye(n+1, dtype=int)[0]
 
 for _ in range(2*n):
     vec[:] = np.r_[vec[1:], 0] + np.r_[0, vec[:-1]]
-#     vec[:] = np.convolve(vec, [1, 0, 1], mode='same')  # alternative form using convolution
+#    vec[:] = np.convolve(vec, [1, 0, 1], mode='same')  # alternative form using convolution
 
 print(f"Catalan number C_{n} =", vec[0])
 
