@@ -1,6 +1,10 @@
+%%timeit
 import numpy as np
 import random
 import time
+from itertools import permutations
+
+digits = '0123456789'
     
 def feedback(guess, real):
     strike = 0
@@ -48,9 +52,31 @@ def choose_guess(candidates):
             best_entropy, best_worst_case, best_guess = entropy, worst_case, guess
     return best_guess
 
+### candidates options(choose one)
+## Duplicates allowed
 candidates = [f'{c:04d}' for c in range(10000)]
 
-# real_answer = str(random.randint(0, 9999)).zfill(4)
+## No duplicates
+# candidates = [''.join(p) for p in permutations(digits, 4)]
+
+## No duplicates with no leading zero
+# candidates = [''.join(p) for p in permutations(digits, 4) if p[0] != '0']
+
+
+### real_answer options(choose one)
+## Duplicates allowed
+real_answer = str(random.randint(0, 9999)).zfill(4)
+
+## No duplicates
+# real_answer = ''.join(random.sample(digits, 4))
+
+## No duplicates with no leading zero
+# first_digit = random.choice('123456789')
+# remaining_digits = digits.replace(first_digit, '')
+# other_digits = random.sample(remaining_digits, 3)
+# real_answer = first_digit + ''.join(other_digits)
+
+## Fixed number
 # real_answer = "9911"
 
 turn = 1
@@ -59,18 +85,22 @@ while candidates:
     start = time.time()
     
     if turn == 1:
-        guess = "0123"
+        guess = "1234"
     else:
         print("Thinking...")
         guess = choose_guess(candidates)
-    
+
+### user interaction
     print(f"Turn {turn}: candidates={len(candidates)}, guess={guess}, execution_time={time.time()-start:.5f}s")
     
     user_input = input("Enter the number of strikes and balls without spaces (e.g., 11): ")
     observed_feedback = tuple(int(c) for c in user_input)
+
+### self validation
 #     observed_feedback = feedback(guess, real_answer)
 #     print(f"Turn {turn}: candidates={len(candidates)}, guess={guess}, feedback={observed_feedback}, execution_time={time.time()-start:.5f}s")
-    
+###
+
     if observed_feedback == (4,0) or len(candidates)==1:
         print(f"Correct answer ({guess}) found!")
         break
