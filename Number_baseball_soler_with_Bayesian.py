@@ -3,14 +3,15 @@ from collections import Counter
 import time
 
 candidates = []
-for i in range(0, 10000): # no reading zero => range(1234, 9877)
+for i in range(123, 10000): # no reading zero => range(1234, 9877)
     s = str(i).zfill(4)
     if len(set(s)) == 4: # no duplicates
         candidates.append(s)
 
 def feedback(guess, answer):
     strikes = sum(g == a for g, a in zip(guess, answer))
-    balls = sum(min(guess.count(d), answer.count(d)) for d in set(guess)) - strikes
+#    balls = sum(min(guess.count(d), answer.count(d)) for d in set(guess)) - strikes # for every mode
+    balls = len(set(guess)&set(answer)) - strikes # for no duplicates
     return strikes, balls
 
 def update_distribution(candidates):
