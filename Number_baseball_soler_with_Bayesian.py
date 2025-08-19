@@ -56,4 +56,5 @@ while True:
     candidates = [c for c in candidates if feedback(guess, c) == observed_feedback]
     if not candidates:
         print("Cannot find the number!")
+        break
     turn += 1
