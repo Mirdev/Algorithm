@@ -6,6 +6,7 @@ from itertools import permutations
 digits = '0123456789'
     
 def feedback(guess, real):
+    ## Generalized
     strike = 0
     
     g_remain = []
@@ -24,6 +25,12 @@ def feedback(guess, real):
             r_remain.remove(g)
     
     return strike, ball
+
+    ## No duplicates only
+#     strike = sum(map(str.__eq__, guess, real))
+#     ball = len(set(guess)&set(real))
+    
+#     return strike, ball-strike
 
 def entropy_of_guess(guess, candidates):
     dist = {}
@@ -76,7 +83,7 @@ real_answer = str(random.randint(0, 9999)).zfill(4)
 # real_answer = first_digit + ''.join(other_digits)
 
 ## Fixed number
-# real_answer = "9911"
+# real_answer = "9812"
 
 turn = 1
 
