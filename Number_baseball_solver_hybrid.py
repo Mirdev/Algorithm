@@ -4,7 +4,7 @@ import time
 import math
 
 candidates = []
-for i in range(234, 9877): # no reading zero => range(1234, 9877) // Duplicates => range(0, 10000)
+for i in range(123, 9877): # no reading zero => range(1234, 9877) // Duplicates => range(0, 10000)
     s = str(i).zfill(4)
     if len(set(s)) == 4: # no duplicates
         candidates.append(s)
