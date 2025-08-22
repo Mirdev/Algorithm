@@ -15,11 +15,17 @@ def feedback(guess, answer):
     return strikes, balls
 
 def update_distribution(candidates):
-    position_probs = [Counter() for _ in range(4)]
+    position_counts = [Counter() for _ in range(4)]
     for c in candidates:
         for i, digit in enumerate(c):
-            position_probs[i][digit] += 1
-    return position_probs
+            position_counts[i][digit] += 1
+    return position_counts
+
+def score_by_position_counts(candidate, position_counts):
+    score = 0
+    for i, d in enumerate(candidate):
+        score += position_counts[i][d]
+    return score
 
 # For debug
 # real_answer = random.choice(candidates)
@@ -29,12 +35,8 @@ def update_distribution(candidates):
 turn = 1
 while True:
     start = time.time()
-    position_probs = update_distribution(candidates)
-    
-    guess = ''.join(max(position_probs[i].items(), key=lambda x: x[1])[0] for i in range(4))
-
-    if len(set(guess)) < 4 or guess not in candidates:
-        guess = random.choice(candidates)
+    position_counts = update_distribution(candidates)
+    guess = max(candidates, key=lambda c: score_by_position_counts(c, position_counts)) # Add scoring system for candidates
     
 ### user interaction
     print(f"Turn {turn}: guess={guess}, candidates={len(candidates)}, execution_time={time.time()-start:.5f}s")
